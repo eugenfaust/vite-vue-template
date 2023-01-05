@@ -1,13 +1,20 @@
 <script>
 import ThemeSwitcher from './components/ThemeSwitcher.vue';
-
+import { useToast } from 'vue-toastification';
 export default {
+  setup() {},
   data() {
-    return {};
+    const toast = useToast();
+    return { toast };
   },
   mounted() {
     const locTheme = localStorage.getItem('theme') || 'light';
     this.$store.commit('setTheme', locTheme);
+  },
+  methods: {
+    showToast() {
+      this.toast.info('This is toast!');
+    },
   },
   computed: {
     theme() {
@@ -31,6 +38,9 @@ export default {
         </p>
         <p>Switch me ↓</p>
         <div class="flex justify-center m-2"><ThemeSwitcher class="" /></div>
+        <button class="btn btn-primary mt-2" @click="showToast">
+          Show toast!
+        </button>
       </div>
     </div>
   </div>
