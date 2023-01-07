@@ -1,10 +1,4 @@
 <script>
-import {
-  AdjustmentsVerticalIcon,
-  ChartBarIcon,
-  BeakerIcon,
-  HomeIcon,
-} from '@heroicons/vue/24/solid';
 export default {
   computed: {
     isOpen() {
@@ -13,10 +7,10 @@ export default {
   },
   methods: {
     closeDrawer() {
-        this.$store.commit('drawer/setOpen', false);
+      this.$store.commit('drawer/setOpen', false);
     },
   },
-  components: { AdjustmentsVerticalIcon, ChartBarIcon, BeakerIcon, HomeIcon },
+  props: ['menu']
 };
 </script>
 <template>
@@ -28,17 +22,8 @@ export default {
     <div class="drawer-side">
       <label @click="closeDrawer" class="drawer-overlay"></label>
       <ul class="menu p-4 w-80 bg-base-200 text-base-content">
-        <li>
-          <a><HomeIcon class="w-6 h-6" />Dashboard</a>
-        </li>
-        <li>
-          <a><ChartBarIcon class="w-6 h-6" />Statistic</a>
-        </li>
-        <li>
-          <a><BeakerIcon class="w-6 h-6" />Manage</a>
-        </li>
-        <li>
-          <a><AdjustmentsVerticalIcon class="w-6 h-6" />Settings</a>
+        <li v-for="m in menu" :key="m.path" @click="$emit('goTo', m.path), closeDrawer()">
+          <a><component :is="m.icon" class="w-6 h-6" />{{m.title}}</a>
         </li>
       </ul>
     </div>

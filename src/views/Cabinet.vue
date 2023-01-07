@@ -1,23 +1,65 @@
 <script>
 import Drawer from '../components/Drawer.vue';
+import Dashboard from './cabinet/Dashboard.vue';
+import Manage from './cabinet/Manage.vue';
+import Settings from './cabinet/Settings.vue';
+import Statistic from './cabinet/Statistic.vue';
+import {
+  AdjustmentsVerticalIcon,
+  ChartBarIcon,
+  BeakerIcon,
+  HomeIcon,
+} from '@heroicons/vue/24/solid';
 export default {
-  components: { Drawer },
+  data() {
+    return {
+      menu: [
+        {
+          path: 'dashboard',
+          title: 'Dashboard',
+          icon: HomeIcon,
+        },
+        {
+          path: 'statistic',
+          title: 'Statistic',
+          icon: ChartBarIcon,
+        },
+        {
+          path: 'manage',
+          title: 'Manage',
+          icon: BeakerIcon,
+        },
+        {
+          path: 'settings',
+          title: 'Settings',
+          icon: AdjustmentsVerticalIcon,
+        },
+      ]
+    }
+  },
+  computed: {
+    innerView() {
+      return this.$route.params.view;
+    }
+  },
+  methods: {
+    routeTo(path) {
+      this.$router.push(path);
+    },
+  },
+  components: { Drawer, Dashboard, Manage, Settings, Statistic},
 };
 </script>
 <template>
-  <Drawer>
+  <Drawer :menu="menu" @go-to="routeTo">
+    
     <div class="hero min-h-screen bg-base-200">
-      <div class="hero-content text-center">
-        <div class="max-w-md">
-          <h1 class="text-5xl font-bold">Cabinet</h1>
-          <p class="py-6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-            porro obcaecati at eveniet, ratione, inventore beatae laborum quis
-            ab soluta, pariatur dolore accusamus. Explicabo quasi sequi omnis!
-            Soluta, officia est.
-          </p>
-        </div>
-      </div>
+      <Transition>
+      <Dashboard v-if="innerView === 'dashboard'" />
+      <Manage v-else-if="innerView === 'manage'" />
+      <Settings v-else-if="innerView === 'settings'" />
+      <Statistic v-else-if="innerView === 'statistic'" />
+    </Transition>
     </div>
   </Drawer>
 </template>
