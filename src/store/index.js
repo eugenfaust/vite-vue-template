@@ -1,16 +1,9 @@
 import { createStore } from 'vuex';
-
+import theme from './modules/theme';
 // Create a new store instance.
 const store = createStore({
-  state() {
-    return {
-      theme: 'light',
-    };
-  },
-  mutations: {
-    setTheme(state, theme) {
-      state.theme = theme;
-    },
+  modules: {
+    theme,
   },
 });
 

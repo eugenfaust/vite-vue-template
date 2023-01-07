@@ -8,13 +8,13 @@ export default {
   mounted() {
     const locTheme = localStorage.getItem('theme') || 'light';
     this.isDark = locTheme === 'dark';
-    this.$store.commit('setTheme', locTheme);
+    this.$store.commit('theme/setTheme', locTheme);
   },
   methods: {
     switchTheme() {
       this.isDark = !this.isDark;
       localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
-      this.$store.commit('setTheme', this.isDark ? 'dark' : 'light');
+      this.$store.commit('theme/setTheme', this.isDark ? 'dark' : 'light');
     },
   },
 };

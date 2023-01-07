@@ -9,7 +9,7 @@ export default {
   },
   mounted() {
     const locTheme = localStorage.getItem('theme') || 'light';
-    this.$store.commit('setTheme', locTheme);
+    this.$store.commit('theme/setTheme', locTheme);
   },
   methods: {
     showToast() {
@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     theme() {
-      return this.$store.state.theme;
+      return this.$store.state.theme.current;
     },
   },
   components: { ThemeSwitcher },
