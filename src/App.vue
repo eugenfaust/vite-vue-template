@@ -1,6 +1,7 @@
 <script>
-import ThemeSwitcher from './components/ThemeSwitcher.vue';
+import NavBar from './components/NavBar.vue';
 import { useToast } from 'vue-toastification';
+
 export default {
   setup() {},
   data() {
@@ -21,27 +22,15 @@ export default {
       return this.$store.state.theme.current;
     },
   },
-  components: { ThemeSwitcher },
+  components: {
+    NavBar,
+  },
 };
 </script>
 
 <template>
-  <div class="hero min-h-screen bg-base-200" :data-theme="theme">
-    <div class="hero-content text-center">
-      <div class="max-w-md">
-        <h1 class="text-5xl font-bold">Vite-vue-template</h1>
-        <p class="py-6">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-          porro obcaecati at eveniet, ratione, inventore beatae laborum quis ab
-          soluta, pariatur dolore accusamus. Explicabo quasi sequi omnis!
-          Soluta, officia est.
-        </p>
-        <p>Switch me ↓</p>
-        <div class="flex justify-center m-2"><ThemeSwitcher class="" /></div>
-        <button class="btn btn-primary mt-2" @click="showToast">
-          Show toast!
-        </button>
-      </div>
-    </div>
+  <div :data-theme="theme">
+    <NavBar />
+    <router-view/>
   </div>
 </template>
