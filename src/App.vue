@@ -3,14 +3,12 @@ import NavBar from './components/NavBar.vue';
 
 export default {
   setup() {},
-  data() {
-  },
+  data() {},
   mounted() {
     const locTheme = localStorage.getItem('theme') || 'light';
     this.$store.commit('theme/setTheme', locTheme);
   },
-  methods: {
-  },
+  methods: {},
   computed: {
     theme() {
       return this.$store.state.theme.current;
@@ -25,11 +23,11 @@ export default {
 <template>
   <div :data-theme="theme">
     <NavBar />
-    <Transition>
-      <router-view/>
-    </Transition>
-
-
+    <router-view v-slot="{ Component }">
+      <transition>
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
 <style>
@@ -42,5 +40,4 @@ export default {
 .v-leave-to {
   opacity: 0;
 }
-
 </style>

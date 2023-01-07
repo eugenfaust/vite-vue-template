@@ -62,7 +62,7 @@ export default {
     <div class="flex-1">
       <router-link to="/"
         ><a class="flex normal-case text-xl p-2 hover:text-primary duration-200"
-          ><FaceSmileIcon class="w-8 h-8" />Vite-vue-template</a
+          ><FaceSmileIcon class="w-8 h-8" />Template</a
         ></router-link
       >
     </div>
