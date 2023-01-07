@@ -21,7 +21,7 @@ export default {
 </script>
 <template>
   <div
-    class="flex border-2 border-current rounded-full w-14 bg-base-300 h-8
+    class="flex border-2 border-current rounded-full w-14 bg-base-300
     transform transition duration-200 hover:scale-110 cursor-pointer"
     @click="switchTheme"
   >

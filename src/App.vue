@@ -1,21 +1,15 @@
 <script>
 import NavBar from './components/NavBar.vue';
-import { useToast } from 'vue-toastification';
 
 export default {
   setup() {},
   data() {
-    const toast = useToast();
-    return { toast };
   },
   mounted() {
     const locTheme = localStorage.getItem('theme') || 'light';
     this.$store.commit('theme/setTheme', locTheme);
   },
   methods: {
-    showToast() {
-      this.toast.info('This is toast!');
-    },
   },
   computed: {
     theme() {
@@ -31,6 +25,22 @@ export default {
 <template>
   <div :data-theme="theme">
     <NavBar />
-    <router-view/>
+    <Transition>
+      <router-view/>
+    </Transition>
+
+
   </div>
 </template>
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+</style>
